@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Compra - Cine</title>
+    <style>
+          body {
+    font-family: 'Arial', sans-serif;
+    background: url('css/images/comprafinal.jpg') ;
+    background-size: cover;
+    margin:0;
+    padding: 0;
+    color: #fff; /* Color del texto sobre la imagen */
+    text-align: center;
+    overflow: hidden; /* Asegura que la imagen de fondo no se desplace */
+}
+
+        #overlay {
+            background: rgba(0, 0, 0, 0.5); /* Capa oscura sobre la imagen de fondo */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Coloca la capa debajo de los elementos principales */
+        }
+
+        h1 {
+            color: #fff;
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5em;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #ticketContainer {
+            background-color: rgb(0, 0, 0);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        #selectedSeatsCount {
+            font-weight: bold;
+            color: rgb(255, 0, 0);
+        }
+
+        #selectedSeats {
+            font-style: italic;
+            color: rgb(255, 0, 0);
+        }
+
+        #confirmPurchaseButton {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        #confirmPurchaseButton:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="overlay"></div>
+
+    <h1>Confirmación de Compra</h1>
+
+    <div id="ticketContainer">
+        <p>¡Gracias por elegirnos!</p>
+        <p>Te estamos esperando para ofrecerte la mejor experiencia cinematográfica.</p>
+
+        <p>Asientos Seleccionados: <span id="selectedSeatsCount"></span></p>
+        <p>Asientos: <span id="selectedSeats"></span></p>
+
+        <button id="confirmPurchaseButton">Apartar</button>
+    </div>
+
+    <script>
+        const selectedSeatsArray = JSON.parse(localStorage.getItem('selectedSeats'));
+        const selectedSeatsCount = document.getElementById("selectedSeatsCount");
+        const selectedSeats = document.getElementById("selectedSeats");
+
+        if (selectedSeatsArray) {
+            selectedSeatsCount.textContent = selectedSeatsArray.length;
+            selectedSeats.textContent = selectedSeatsArray.join(', '); // Mostrar los asientos seleccionados
+        }
+
+        const confirmPurchaseButton = document.getElementById("confirmPurchaseButton");
+        confirmPurchaseButton.addEventListener("click", function () {
+            window.location.href = "/resumen-de-compra"; // Redirección al hacer clic en "Apartar"
+        });
+    </script>
+</body>
+
+</html>

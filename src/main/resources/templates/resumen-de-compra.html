@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Compra - Cine</title>
+    <style>
+      body {
+    font-family: 'Arial', sans-serif;
+    background: url('css/images/comprafinal.jpg') ;
+    background-size: cover;
+    margin:0;
+    padding: 0;
+    color: #fff; /* Color del texto sobre la imagen */
+    text-align: center;
+    overflow: hidden; /* Asegura que la imagen de fondo no se desplace */
+}
+
+        #overlay {
+            background: rgba(0, 0, 0, 0.5); /* Capa oscura sobre la imagen de fondo */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Coloca la capa debajo de los elementos principales */
+        }
+
+        h1 {
+            color: #fff;
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5em;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #ticketContainer {
+            background-color: rgb(0, 0, 0);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        #selectedSeats {
+            font-weight: bold;
+            color: rgb(255, 0, 0);
+            font-size: 1.2em;
+        }
+
+        #finalizarButton {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        #finalizarButton:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="overlay"></div>
+
+    <h1>Resumen de Compra</h1>
+
+    <div id="ticketContainer">
+        <p>¡Gracias por tu compra en CineXYZ!</p>
+        <p>Esperamos que disfrutes de la película.</p>
+
+        <p>Asientos Seleccionados: <span id="selectedSeats"></span></p>
+
+        <button id="finalizarButton">Finalizar</button>
+    </div>
+
+    <script>
+        const selectedSeatsDisplay = document.getElementById('selectedSeats');
+        const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
+
+        if (selectedSeats && selectedSeats.length > 0) {
+            selectedSeatsDisplay.textContent = selectedSeats.join(', ');
+        } else {
+            // Si no hay asientos seleccionados, redirige a la página de reservas
+            window.location.href = '/';
+        }
+
+        const finalizarButton = document.getElementById('finalizarButton');
+        finalizarButton.addEventListener('click', function () {
+            window.location.href = '/'; // Redirigir al hacer clic en "Finalizar" a la página de reservar
+        });
+    </script>
+</body>
+
+</html>

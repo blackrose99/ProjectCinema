@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Inicio de Sesión - CINE</title>
+    
+    <style>
+        body {
+            background-image: url('css/images/login.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+        }
+
+        .letrero-grande {
+            text-align: center;
+            font-size: 40px;
+            margin-top: 50px;
+            color: black;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 100px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #0046B9;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .p-container {
+            text-align: center;
+        }
+
+        .alert {
+            background-color: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+            border-radius: 3px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .alert p {
+            margin: 0;
+        }
+
+        .alert-danger {
+            background-color: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+            border-radius: 3px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .alert-danger p {
+            margin: 0;
+        }
+
+        .alert-success {
+            background-color: #dff0d8;
+            color: #3c763d;
+            border: 1px solid #d6e9c6;
+            border-radius: 3px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .alert-success p {
+            margin: 0;
+        }
+
+     
+
+        .contenedor-con-borde {
+            border: 2px solid #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+          /* Tu estilo existente aquí */
+
+        #cartelera-btn {
+            background-color: #0046B9;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 20px;
+            text-transform: uppercase;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+	 <a id="cartelera-btn" href="/">Cartelera</a>
+	<br>
+	<br>
+	<br>
+    <div class="letrero-grande">
+		<br>
+        <p>Para continuar con la reserva,<br> por favor inicia sesión</p>
+    </div>
+
+    <div class="container">
+        <h1>BIENVENIDO A CINE</h1>
+        <form th:action="@{/login/ingresar}" method="post">
+            <div th:if="${error}" class="alert alert-danger">
+                <p th:if="${error=='Bad credentials'}">Usuario o contraseña incorrectos</p>
+                <p th:if="${error!='Bad credentials'}" th:text="${error}"></p>
+            </div>
+            <div>
+                <label for="user"><ion-icon name="person-outline"></ion-icon> Usuario:</label>
+                <input class="form-control" type="text" id="user" name="user" placeholder="Usuario" required>
+            </div>
+            <div>
+                <label for="password"><ion-icon name="key-outline"></ion-icon> Contraseña:</label>
+                <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <div>
+                <label for="role">Seleccionar rol:</label>
+                <select id="role" name="role" class="form-control">
+                    <option value="user">Usuario</option>
+                    <option value="admin">Administrador</option>
+                </select>
+            </div>
+            <input type="hidden" name="service" value="login" />
+            <p class="p-container">
+                <input type="submit" name="Ingresar" id="go" value="Ingresar">
+            </p>
+            <p>No estás registrado? <a th:href="@{/login/new}">Regístrate</a></p>
+            <br>
+        </form>
+    </div>
+
+    <footer>
+        <div class="contenedor-con-borde">
+            <p>&copy; 2023 Página CINECO</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para asegurar que la animación comience después de que la página cargue
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector(".container").style.opacity = 1;
+            document.querySelector(".letrero-grande").style.opacity = 1;
+            document.querySelector("footer").style.opacity = 1;
+        });
+    </script>
+</body>
+</html>

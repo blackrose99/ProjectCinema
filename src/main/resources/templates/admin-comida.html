@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Comida - Cine</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        nav {
+            background-color: rgb(0, 128, 192);
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            font-family: 'Pacifico', cursive; /* Cambia la fuente */
+            font-size: 2.5em; /* Tamaño de la fuente */
+            position: relative;
+            animation: fadeIn 1s ease-in-out; /* Agrega una animación de desvanecimiento */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        a {
+            display: inline-block;
+            padding: 8px 12px;
+            text-decoration: none;
+            background-color: #333;
+            color: white;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <h1>CINE Y ENTRETENIMIENTO</h1>
+        <nav>
+        <a href="/admin-usuarios">Administrar Usuarios</a>
+        <a href="/admin-peliculas">Administrar Películas</a>
+        <a href="/admin-comida">Administrar Comida</a>
+    </nav>
+    </nav>
+
+    <div class="container">
+		 <a class="btn-regresar" href="/vista-admin">Regresar</a>
+        <BR>
+        <h1>Administración de Comida</h1>
+         <!-- Botón de Regresar -->
+       
+
+        <!-- Formulario para agregar comida -->
+        <form th:action="@{/api/admin-comida/agregar-comida}" method="post">
+            <label for="nombre">Nombre de la comida:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="precio">Precio:</label>
+            <input type="text" id="precio" name="precio" pattern="\d+(\.\d{2})?" title="Ingrese un número con hasta dos decimales" required>
+            <button type="submit">Agregar Comida</button>
+        </form>
+
+        <!-- Tabla para mostrar la lista de comidas -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Itera sobre la lista de comidas y muestra la información -->
+                <tr th:each="comida : ${comidas}">
+                    <td th:text="${comida.nombre}"></td>
+                    <td th:text="${#numbers.formatDecimal(comida.precio, 2, 'COMMA', 3, 'POINT')}"></td>
+                    <td>
+                        <!-- Botón de Eliminar -->
+                        <a th:href="@{/api/admin-comida/eliminar-comida/{id}(id=${comida.id})}"
+                           onclick="return confirm('¿Estás seguro de eliminar esta comida?')">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

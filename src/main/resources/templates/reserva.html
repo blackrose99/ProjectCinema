@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Asientos - Sala de Cine</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5em;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .screen {
+            width: 400px;
+            height: 20px;
+            background: black;
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .seat {
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            background: lightgreen;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .unavailable {
+            background: lightcoral;
+            cursor: not-allowed;
+        }
+
+        .selected {
+            background: lightblue;
+        }
+
+        .occupied {
+            background: lightcoral;
+        }
+
+        .legend {
+            margin-top: 15px;
+        }
+
+        .legend span {
+            margin-right: 10px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+        }
+
+        .legend .available {
+            background: lightgreen;
+        }
+
+        .legend .unavailable {
+            background: lightcoral;
+        }
+
+        .cinema-image {
+            width: 300px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Puedes ajustar estilos adicionales para tu imagen aquí */
+        }
+
+        #selectedSeats {
+            color: #333;
+            font-weight: bold;
+        }
+
+        #continueButton {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 1em;
+        }
+
+        #continueButton:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Mapa de Asientos - Sala de Cine</h2>
+
+    <div class="screen"></div>
+
+    <div class="row">
+        <div class="seat available">A1</div>
+        <div class="seat available">A2</div>
+        <div class="seat available">A3</div>
+        <div class="seat available">A4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">A5</div>
+        <div class="seat available">A6</div>
+        <div class="seat available">A7</div>
+        <div class="seat available">A8</div>
+        <div class="seat available">A9</div>
+    </div>
+
+    <div class="row">
+        <div class="seat available">B1</div>
+        <div class="seat available">B2</div>
+        <div class="seat available">B3</div>
+        <div class="seat available">B4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">B5</div>
+        <div class="seat available">B6</div>
+        <div class="seat available">B7</div>
+        <div class="seat available">B8</div>
+        <div class="seat available">B9</div>
+    </div>
+
+    <div class="row">
+        <div class="seat available">C1</div>
+        <div class="seat available">C2</div>
+        <div class="seat available">C3</div>
+        <div class="seat available">C4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">C5</div>
+        <div class="seat available">C6</div>
+        <div class="seat available">C7</div>
+        <div class="seat available">C8</div>
+        <div class="seat available">C9</div>
+    </div>
+     <div class="row">
+        <div class="seat available">D1</div>
+        <div class="seat available">D2</div>
+        <div class="seat available">D3</div>
+        <div class="seat available">D4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">D5</div>
+        <div class="seat available">D6</div>
+        <div class="seat available">D7</div>
+        <div class="seat available">D8</div>
+        <div class="seat available">D9</div>
+    </div>
+ <div class="row">
+        <div class="seat available">E1</div>
+        <div class="seat available">E2</div>
+        <div class="seat available">E3</div>
+        <div class="seat available">E4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">E5</div>
+        <div class="seat available">E6</div>
+        <div class="seat available">E7</div>
+        <div class="seat available">E8</div>
+        <div class="seat available">E9</div>
+    </div>
+     <div class="row">
+        <div class="seat available">F1</div>
+        <div class="seat available">F2</div>
+        <div class="seat available">F3</div>
+        <div class="seat available">F4</div>
+        <!-- Puedes añadir más asienos en esta fila -->
+        <div class="seat available">F5</div>
+        <div class="seat available">F6</div>
+        <div class="seat available">F7</div>
+        <div class="seat available">F8</div>
+        <div class="seat available">F9</div>
+    </div>
+     <div class="row">
+        <div class="seat available">G1</div>
+        <div class="seat available">G2</div>
+        <div class="seat available">G3</div>
+        <div class="seat available">G4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">G5</div>
+        <div class="seat available">G6</div>
+        <div class="seat available">G7</div>
+        <div class="seat available">G8</div>
+        <div class="seat available">G9</div>
+    </div>
+     <div class="row">
+        <div class="seat available">H1</div>
+        <div class="seat available">H2</div>
+        <div class="seat available">H3</div>
+        <div class="seat available">H4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">H5</div>
+        <div class="seat available">H6</div>
+        <div class="seat available">H7</div>
+        <div class="seat available">H8</div>
+        <div class="seat available">H9</div>
+    </div>
+     <div class="row">
+        <div class="seat available">I1</div>
+        <div class="seat available">I2</div>
+        <div class="seat available">I3</div>
+        <div class="seat available">I4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">I5</div>
+        <div class="seat available">I6</div>
+        <div class="seat available">I7</div>
+        <div class="seat available">I8</div>
+        <div class="seat available">I9</div>
+    </div>
+     <div class="row">
+        <div class="seat available">J1</div>
+        <div class="seat available">J2</div>
+        <div class="seat available">J3</div>
+        <div class="seat available">J4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">J5</div>
+        <div class="seat available">J6</div>
+        <div class="seat available">J7</div>
+        <div class="seat available">J8</div>
+        <div class="seat available">J9</div>
+    </div>
+     <div class="row">
+        <div class="seat available">K1</div>
+        <div class="seat available">K2</div>
+        <div class="seat available">K3</div>
+        <div class="seat available">K4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">K5</div>
+        <div class="seat available">K6</div>
+        <div class="seat available">K7</div>
+        <div class="seat available">K8</div>
+        <div class="seat available">K9</div>
+    </div>
+     <div class="row">
+        <div class="seat available">VIP1</div>
+        <div class="seat available">VIP2</div>
+        <div class="seat available">VIP3</div>
+        <div class="seat available">VIP4</div>
+        <!-- Puedes añadir más asientos en esta fila -->
+        <div class="seat available">VIP5</div>
+        <div class="seat available">VIP6</div>
+        <div class="seat available">VIP7</div>
+        <div class="seat available">VIP8</div>
+        <div class="seat available">VIP9</div>
+    </div>
+    <div class="legend">
+        <span class="available"></span> Disponible
+        <span class="unavailable"></span> Ocupado
+    </div>
+
+    <p>Asientos seleccionados: <span id="selectedSeats">0</span></p>
+    <button id="continueButton">Continuar con la compra</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const seats = document.querySelectorAll('.seat');
+            const selectedSeatsDisplay = document.getElementById('selectedSeats');
+
+            const updateSelectedSeatsDisplay = () => {
+                const selectedSeats = document.querySelectorAll('.selected');
+                selectedSeatsDisplay.textContent = selectedSeats.length;
+            };
+
+            const continueButton = document.getElementById('continueButton');
+
+            seats.forEach(seat => {
+                seat.addEventListener('click', () => {
+                    if (seat.classList.contains('available')) {
+                        seat.classList.toggle('selected');
+                        updateSelectedSeatsDisplay();
+                    } else if (seat.classList.contains('unavailable')) {
+                        alert('Este asiento no está disponible');
+                    }
+                });
+            });
+
+            continueButton.addEventListener('click', () => {
+                const selectedSeats = document.querySelectorAll('.selected');
+                if (selectedSeats.length === 0) {
+                    alert('Por favor selecciona al menos un asiento para continuar con la compra');
+                } else {
+                    const newlySelectedSeats = Array.from(selectedSeats).map(selectedSeat => selectedSeat.textContent);
+
+                    // Limpiar el almacenamiento local antes de agregar los nuevos asientos
+                    localStorage.removeItem('selectedSeats');
+                    localStorage.setItem('selectedSeats', JSON.stringify(newlySelectedSeats));
+
+                    seats.forEach(seat => {
+                        if (newlySelectedSeats.includes(seat.textContent)) {
+                            seat.classList.remove('available');
+                            seat.classList.add('unavailable');
+                            seat.classList.add('occupied');
+                        }
+                    });
+
+                    alert(`Continuar con la compra de ${newlySelectedSeats.length} asiento(s)`);
+                     window.location.href = "/tickect";  // Comentado para evitar redirección
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

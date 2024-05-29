@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Cine y Entretenimiento</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #shell {
+            width: 90%;
+            margin: 0 auto;
+            text-align: left;
+            position: relative;
+        }
+
+        #header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        #navigation {
+            margin-top: 10px;
+        }
+
+        .navbar {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .movie {
+            display: flex;
+            text-align: left;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: flex-end;
+            height: 50vh;
+        }
+
+        .movie-image img {
+            width: 150%;
+            height: auto;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .description {
+            flex: 1;
+            margin-top: 10px;
+        }
+
+        .description p {
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 20px;
+            color: red;
+            margin-top: 10px;
+        }
+
+        .buy-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .buy-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="shell">
+        <div id="header">
+            <h1><a href="#">Cine y Entretenimiento - CONFITERIA</a></h1>
+            <div id="navigation">
+                <ul class="navbar">
+                    <li><a href="/">CARTELERA</a></li>
+                    <li><a href="#">PROXIMAMENTE</a></li>
+                    <li><a href="/confiteria">CONFITERIA</a></li>
+                   
+                </ul>
+            </div>
+        </div>
+
+        <div class="movie">
+            <div class="movie-image">
+                <img src="css/images/combocrispetas.jpg" alt="COMBO CRISPETAS" />
+            </div>
+            <div class="description">
+                <h1>
+                 
+               
+                    <center>
+                        <p>1 Crispeta de sal 150 g + 2 Gaseosas 640 ml</p>
+                    </center>
+                </h1>
+                <div>
+                    <h1>
+                        <br>
+                        <center>
+                            <p><span class="available">Disponible</span></p>
+                        </center>
+                    </h1>
+                </div>
+                <div class="price">
+                    <center>
+                        <p>Precio: $28.000</p>
+                    </center>
+                </div>
+                <center>
+                   
+                </center>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
